@@ -1,6 +1,4 @@
-Machine Learning Engineer coding problem
-
-Write a simple ASCII art drawing program. The program should support the following features:
+Simple ASCII art drawing program. The program should support the following features:
 
 	N w h   
 Create a new canvas of width w and height h.
@@ -19,13 +17,6 @@ Fill the entire area connected to (x,y) with the selected color. This is the sam
           	 
 	Q
 Quit the program.
-    
-Notes
-
-Please write your solution either in Python, C++ or Rust. We don’t expect you to spend more than 6 hours to come up with a solution. The submitted solution should be clean, complete, and working as expected. Make sure you also have a look at the next page for a sample run of the program. This document should contain all information required to solve the problem. If something is not clear, feel free to make an explicit assumption.
-
-This coding problem is property of Auterion AG. Please do not publicise or re-distribute it in any form (e.g. blog about it, put the problem or solution on GitHub, etc.)
-Sample I/O
 
 Below is a sample run of the program. User input is prefixed with ’enter command:’.
 
