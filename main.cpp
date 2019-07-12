@@ -1,45 +1,68 @@
+#include <sstream>
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <string>
 
 using namespace std;
+int width = 20;
+int height = 5;
+char color = 'x';
+enum eCommand {NEW = 'N', COLOR = 'C', LINE = 'L', RECT = 'R', BUCKET, QUIT};
+eCommand command;
 
-void displayCanvas(const vector<vector<char> >& vy)
+class Canvas {
+    int width, height;
+    vector<vector<char>> values;
+public:
+    Canvas(){};
+    Canvas(int w, int h): width(w), height(h){values = vector<vector<char>>(h, vector<char>(w, ' '));};
+    void setWidth(int w) {
+        values = w > width ? vector<vector<char>>(height, vector<char>(w, ' ')) : values;
+        width = w;
+    };
+    void setHeight(int h) {
+        values = h > height ? vector<vector<char>>(h, vector<char>(width, ' ')) : values;
+        height = h;};
+    void setValues (int x, int y, char color){ values[x][y]=color;};
+    char getValues (int x, int y) const { return values[x][y];};
+    const int getWidth() const {return width;};
+    int getHeight() const {return height;};
+};
+
+Canvas canvas(width, height);
+
+void displayCanvas(const Canvas& c)
 {
-    for (int j = 0; j < vy[0].size(); j++)
+    for (int j = -1; j < c.getWidth()+1; j++)
     {
         cout << "-" ;
-    }
-    for (int i = 0; i < vy.size(); i++)
-    {
-        cout << "\n|" ;
-        for (int j = 0; j < vy[i].size(); j++)
-        {
-            cout << " " << vy[i][j];
-        }
-        cout << "|" ;
     }
     cout << "\n";
-    for (int j = 0; j < vy[0].size(); j++)
+    for (int i = 0; i < c.getHeight(); i++)
+    {
+        for (int j = -1; j < c.getWidth()+1; j++)
+        {
+            if ((j == -1 || j == c.getWidth())){cout << '|';}
+            else{
+                cout << c.getValues(i, j);
+            }
+        }
+        cout << "\n" ;
+    }
+    for (int j = -1; j < c.getWidth()+1; j++)
     {
         cout << "-" ;
     }
 }
-
-vector<vector<char>> createCanvas(const int w, const int h)
+void fill(Canvas& c, const int i, const int j, char oldColor, char color)
 {
-    vector<vector<char>> canvas(w, vector<char>(h));
-    return canvas;
-}
-
-void fill(vector<vector<char>>& canvas, const int i, const int j, char oldColor, char color)
-{
-    if (i < 0 || i >= canvas.size() || j < 0 || j >= canvas[0].size() || canvas[i][j] != oldColor)
+    if (i < 0 || i >= c.getHeight() || j < 0 || j >= c.getWidth() || c.getValues(i, j) != oldColor)
     {
         return;
     }
     
-    canvas[i][j] = color;
+    c.setValues(i, j, color);
     fill(canvas, i+1, j, oldColor, color);
     fill(canvas, i-1, j, oldColor, color);
     fill(canvas, i, j+1, oldColor, color);
@@ -47,48 +70,37 @@ void fill(vector<vector<char>>& canvas, const int i, const int j, char oldColor,
     return;
 }
 
-void bucketFill(vector<vector<char>>& canvas, const int row, const int col, char color)
+void bucketFill(Canvas& c, const int row, const int col, char color)
 {
-    if (canvas[row][col] == color){
+    if (c.getValues(row, col) == color){
         return;
     }
-    fill(canvas, row, col, canvas[row][col], color);
+    fill(canvas, row, col, c.getValues(row, col), color);
 }
 
 int main(int argc, const char * argv[]) {
     char input;
-    int w, h;
     int row, col;
-    char color = 'x';
-    cout << "Enter width ";
-    cin >> w;
-    cout << "Enter height ";
-    cin >> h;
-    vector<vector<char>> canvas = createCanvas(w, h);
-    displayCanvas(canvas);
-    
     do
     {
-        cout << "\n Enter feature ";
+        displayCanvas(canvas);
+        cout << "\n Enter command: \n N for new canvas \n C for color \n L for line \n R for rectangle \n B for bucket \n ...";
         cin >> input;
         switch (input) {
             case 'N':
-            case 'n':
             {
                 cout << "Enter width ";
-                cin >> w;
+                cin >> width;
                 cout << "Enter height ";
-                cin >> h;
-                canvas = createCanvas(w, h);
-                displayCanvas(canvas);
+                cin >> height;
+                canvas.setWidth(width);
+                canvas.setHeight(height);
                 break;
             }
             case 'C':
-            case 'c':
             {
                 cout << "Enter color ";
                 cin >> color;
-                displayCanvas(canvas);
                 break;
             }
             case 'B':
@@ -99,12 +111,12 @@ int main(int argc, const char * argv[]) {
                 cout << "Enter col ";
                 cin >> col;
                 bucketFill(canvas, row, col, color);
-                displayCanvas(canvas);
                 break;
             }
             default:
                 cout << "No valid input ";
-        }
+            }
+       
     } while (!((input == 'Q') || (input == 'q')));
     
 
