@@ -5,9 +5,7 @@
 #include <string>
 
 using namespace std;
-int width = 20;
-int height = 5;
-char color = 'x';
+
 
 class Canvas {
     int width, height;
@@ -28,7 +26,6 @@ public:
     int getHeight() const {return height;};
 };
 
-Canvas canvas(width, height);
 
 void displayCanvas(const Canvas& c)
 {
@@ -61,10 +58,10 @@ void fill(Canvas& c, const int col, const int row, char oldColor, char color)
     }
     
     c.setValues(col, row, color);
-    fill(canvas, col+1, row, oldColor, color);
-    fill(canvas, col-1, row, oldColor, color);
-    fill(canvas, col, row+1, oldColor, color);
-    fill(canvas, col, row-1, oldColor, color);
+    fill(c, col+1, row, oldColor, color);
+    fill(c, col-1, row, oldColor, color);
+    fill(c, col, row+1, oldColor, color);
+    fill(c, col, row-1, oldColor, color);
     return;
 }
 
@@ -73,7 +70,7 @@ void bucketFill(Canvas& c, const int col, const int row, char color)
     if (c.getValues(col, row) == color){
         return;
     }
-    fill(canvas, col, row, c.getValues(col, row), color);
+    fill(c, col, row, c.getValues(col, row), color);
 }
 
 void drawStraightLine(Canvas& c, const int col1, const int row1, const int col2, const int row2, char color)
@@ -105,6 +102,12 @@ void drawRectangle(Canvas& c, const int col1, const int row1, const int col2, co
 }
 
 int main(int argc, const char * argv[]) {
+    int width = 20;
+    int height = 5;
+    char color = 'x';
+    
+    Canvas canvas(width, height);
+    
     char input;
     int row, col;
     int row2, col2;
@@ -112,7 +115,6 @@ int main(int argc, const char * argv[]) {
     {
         displayCanvas(canvas);
         cout << "\n Enter command: \n N: Create new canvas \n C: Set color \n L: Create new line \n R: Create new rectangle \n B: Fill area \n Q: Quit \n " << endl;
-        
         cin >> input;
         switch (input) {
             case 'N':
