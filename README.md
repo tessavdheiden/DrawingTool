@@ -2,24 +2,12 @@
 
 ## Description
 Simple ASCII art drawing program. The program should support the following features:
-
-	N w h   
-Create a new canvas of width w and height h.
-
-	C c
-Set the color to the value of c. Default color should be "x".
-
-	L x1 y1 x2 y2
-Create a new line from (x1,y1) to (x2,y2). Support for horizontal or vertical lines is enough. Lines will be drawn using the selected color.
-          	 
-	R x1 y1 x2 y2
-Create a new rectangle from  (left,top) (x1,y1) to (right,bottom) (x2,y2). Lines will be drawn using the selected color.
-          	 
-	B x y 
-Fill the entire area connected to (x,y) with the selected color. This is the same as a "bucket fill" tool in paint programs.
-          	 
-	Q
-Quit the program.
+- N w h: Create a new canvas of width w and height h.
+- C c: Set the color to the value of c. Default color should be "x".
+- L x1 y1 x2 y2: Create a new line from (x1,y1) to (x2,y2). Support for horizontal or vertical lines is enough. Lines will be drawn using the selected color.
+- R x1 y1 x2 y2: Create a new rectangle from  (left,top) (x1,y1) to (right,bottom) (x2,y2). Lines will be drawn using the selected color.
+- B x y: Fill the entire area connected to (x,y) with the selected color. This is the same as a "bucket fill" tool in paint programs.
+- Q: Quit the program.
 
 ## Sample run
 Below is a sample run of the program:
@@ -122,5 +110,4 @@ Enter col
 Q
 Program ended with exit code: 0
 ```
-## Implementation details
 
