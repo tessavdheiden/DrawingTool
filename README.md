@@ -1,3 +1,6 @@
+# Drawing Tool
+
+## Description
 Simple ASCII art drawing program. The program should support the following features:
 
 	N w h   
@@ -18,6 +21,7 @@ Fill the entire area connected to (x,y) with the selected color. This is the sam
 	Q
 Quit the program.
 
+## Sample run
 Below is a sample run of the program:
 ```bash
 
@@ -118,4 +122,5 @@ Enter col
 Q
 Program ended with exit code: 0
 ```
+## Implementation details
 
