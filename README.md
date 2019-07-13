@@ -110,4 +110,10 @@ Enter col
 Q
 Program ended with exit code: 0
 ```
+## Implementation details
+The project contains the following structure:
 
+    ├── main.cpp                     # Interface with the user. Creates canvas object and allows to draw on it
+    ├── canvas.h                     # Simple 2d structure with getters and setters to change its content.
+    └── drawing.h                    # 3 methods to change the canvas: draw line and rectangle and fill area. 
+    
