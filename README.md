@@ -18,64 +18,104 @@ Fill the entire area connected to (x,y) with the selected color. This is the sam
 	Q
 Quit the program.
 
-Below is a sample run of the program. User input is prefixed with ’enter command:’.
+Below is a sample run of the program:
+```bash
 
-
-enter command: N 20 5
+ Enter command: 
+ N: Create new canvas 
+ C: Set color 
+ L: Create new line 
+ R: Create new rectangle 
+ B: Fill area 
+ Q: Quit 
+ 
 ----------------------
-|                	|
-|                	|
-|                	|
-|                	|
-|                	|
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
 ----------------------
-
-enter command: L 1 2 6 2
+L
+Enter first col 
+...2
+Enter first row 
+...2
+Enter second col 
+...6
+Enter second row 
+...2
 ----------------------
-|                	|
-|xxxxxx          	|
-|                	|
-|                	|
-|                	|
+|                    |
+| xxxxx              |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
 ----------------------
-
-enter command: L 6 3 6 5
+R
+Enter first col 
+...4
+Enter first row 
+...4
+Enter second col 
+...10
+Enter second row 
+...10
 ----------------------
-|                	|
-|xxxxxx          	|
-|     x          	|
-|     x          	|
-|     x          	|
+|                    |
+| xxxxx              |
+|                    |
+|   xxxxxxx          |
+|   x     x          |
+|   x     x          |
+|   x     x          |
+|   x     x          |
+|   x     x          |
+|   xxxxxxx          |
 ----------------------
-
-enter command: R 16 1 20 3
+C
+Enter color 
+...o
 ----------------------
-|               xxxxx|
-|xxxxxx     	x   x|
-|     x     	xxxxx|
-|     x              |
-|     x              |
+|                    |
+| xxxxx              |
+|                    |
+|   xxxxxxx          |
+|   x     x          |
+|   x     x          |
+|   x     x          |
+|   x     x          |
+|   x     x          |
+|   xxxxxxx          |
 ----------------------
-
-enter command: C o
+B
+Enter row  
+...8
+Enter col  
+...8
 ----------------------
-|               xxxxx|
-|xxxxxx         x   x|
-|     x     	xxxxx|
-|     x              |
-|     x              |
+|                    |
+| xxxxx              |
+|                    |
+|   xxxxxxx          |
+|   xooooox          |
+|   xooooox          |
+|   xooooox          |
+|   xooooox          |
+|   xooooox          |
+|   xxxxxxx          |
 ----------------------
-
-enter command: B 10 3
-----------------------
-|oooooooooooooooxxxxx|
-|xxxxxxooooooooox   x|
-|     xoooooooooxxxxx|
-|     xoooooooooooooo|
-|     xoooooooooooooo|
-----------------------
-
-enter command: Q
-
-
+Q
+Program ended with exit code: 0
+```
 
